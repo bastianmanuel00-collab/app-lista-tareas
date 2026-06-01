@@ -4,6 +4,16 @@ import "./App.css";
 function App() {
   const [tareas, setTareas] = useState ([]);
   const [texto, setTexto]= useState("");
+  function agregarTarea() {
+    if (texto.trim() === "") return;
+    const nueva = {
+      id: Date.now(),
+      titulo: texto,
+      hecha: false,
+    };
+    setTareas([...tareas, nueva]);
+    setTexto("");
+    }
   return (
     <div>
       <div className="app">
