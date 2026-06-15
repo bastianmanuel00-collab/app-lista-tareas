@@ -12,6 +12,14 @@ function App() {
     setTexto("");
   }
 
+  function alternarTarea(id) {
+    setTareas(tareas.map((t) => t.id === id ? { ...t, hecha: !t.hecha } : t));
+  }
+
+  function eliminarTarea(id) {
+    setTareas(tareas.filter((t) => t.id !== id));
+  }
+
   return (
     <div className="app">
       <h1>Mi lista de tareas</h1>
@@ -28,7 +36,13 @@ function App() {
       <ul>
         {tareas.map((t) => (
           <li key={t.id}>
-            <span>{t.titulo}</span>
+            <span
+              onClick={() => alternarTarea(t.id)}
+              className={t.hecha ? "hecha" : ""}
+            >
+              {t.titulo}
+            </span>
+            <button onClick={() => eliminarTarea(t.id)}>X</button>
           </li>
         ))}
       </ul>
